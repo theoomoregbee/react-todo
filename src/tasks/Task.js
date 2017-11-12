@@ -1,14 +1,26 @@
 import React, { Component } from 'react'
-import { ListGroup } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
+
+function Item (props) {
+  return (
+    <Row>
+      <Col xs={9} >
+        <h5> <input type='checkbox' value='done' checked={props.item.completed} /> {props.item.title}</h5>
+        {props.item.date}
+      </Col>
+      <Col xs={3}>
+        <Button bsStyle='danger' bsSize='small'>Danger</Button>
+      </Col>
+    </Row>
+  )
+}
 
 class Task extends Component {
   render () {
     return (
-      <ListGroup>
-        <ListGroupItem header='Heading 1'>Some body text</ListGroupItem>
-        <ListGroupItem header='Heading 2' href='#'>Linked item</ListGroupItem>
-        <ListGroupItem header='Heading 3' bsStyle='danger'>Danger styling</ListGroupItem>
-      </ListGroup>
+      <div>
+        {this.props.tasks.map((item, index) => <Item key={item.id} item={item} />)}
+      </div>
     )
   }
 }
