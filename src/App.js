@@ -9,6 +9,7 @@ class App extends Component {
     this.state = {
       tasks: []
     }
+    this.deleteTask = this.deleteTask.bind(this)
   }
 
   addTask (title) {
@@ -19,12 +20,21 @@ class App extends Component {
     this.inputField.value = ''
   }
 
+  deleteTask (id) {
+    let tasks = this.state.tasks
+    let index = tasks.findIndex(task => task.date === id)
+    if (index > -1) {
+      tasks.splice(index, 1)
+      this.setState({tasks: tasks})
+    }
+  }
+
   render () {
     return (
       <div style={{width: '400px', margin: 'auto', marginTop: '50px'}}>
         <Panel header={<h3>TODO App</h3>}>
           <FormControl
-            type='text' 
+            type='text'
             placeholder='What to do'
             inputRef={text => { this.inputField = text }}
           />
@@ -32,7 +42,7 @@ class App extends Component {
             onClick={() => this.addTask(this.inputField.value)}>ADD</Button>
           <br />
           <h4>Current Tasks</h4>
-          <Task tasks={this.state.tasks} />
+          <Task tasks={this.state.tasks} onDelete={this.deleteTask} />
         </Panel>
       </div>
     )
