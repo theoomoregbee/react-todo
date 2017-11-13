@@ -5,7 +5,7 @@ function Item ({title, date, completed, onDelete, onCompleted}) {
   return (
     <Row>
       <Col xs={9} >
-        <h5> <input type='checkbox' value='done' checked={completed} onClick={() => onCompleted(date)} /> {title}</h5>
+        <h5> <input type='checkbox' value='done' readOnly checked={completed} onClick={() => onCompleted(date)} /> {title}</h5>
         {date.toString()}
       </Col>
       <Col xs={3}>
