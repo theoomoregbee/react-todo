@@ -60,8 +60,8 @@ class App extends Component {
           <button onClick={() => this.toggleView()}>Toggle View</button>
           <h4>{this.state.completedView ? 'Completed Tasks' : 'Current Tasks'}</h4>
           { this.state.completedView
-          ? <Task tasks={this.state.tasks.filter(task=>task.completed === true)} onDelete={this.deleteTask} onCompleted={this.onCompleted} />
-          : <Task tasks={this.state.tasks.filter(task=>task.completed === false)} onDelete={this.deleteTask} onCompleted={this.onCompleted} />
+          ? <Task tasks={this.state.tasks.filter(task => task.completed === true)} onDelete={this.deleteTask} onCompleted={this.onCompleted} />
+          : <Task tasks={this.state.tasks.filter(task => task.completed === false)} onDelete={this.deleteTask} onCompleted={this.onCompleted} />
           }
 
         </Panel>
