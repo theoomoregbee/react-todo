@@ -10,6 +10,7 @@ class App extends Component {
       tasks: []
     }
     this.deleteTask = this.deleteTask.bind(this)
+    this.onCompleted = this.onCompleted.bind(this)
   }
 
   addTask (title) {
@@ -29,6 +30,15 @@ class App extends Component {
     }
   }
 
+  onCompleted (id) {
+    let tasks = this.state.tasks
+    let task = tasks.find(task => task.date === id)
+    if (task != null) {
+      task.completed = !task.completed
+      this.setState({tasks: tasks})
+    }
+  }
+
   render () {
     return (
       <div style={{width: '400px', margin: 'auto', marginTop: '50px'}}>
@@ -42,7 +52,7 @@ class App extends Component {
             onClick={() => this.addTask(this.inputField.value)}>ADD</Button>
           <br />
           <h4>Current Tasks</h4>
-          <Task tasks={this.state.tasks} onDelete={this.deleteTask} />
+          <Task tasks={this.state.tasks} onDelete={this.deleteTask} onCompleted={this.onCompleted} />
         </Panel>
       </div>
     )
