@@ -7,7 +7,8 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      tasks: []
+      tasks: [],
+      completedView: false
     }
     this.deleteTask = this.deleteTask.bind(this)
     this.onCompleted = this.onCompleted.bind(this)
@@ -39,6 +40,11 @@ class App extends Component {
     }
   }
 
+  toggleView () {
+    let currentView = this.state.completedView
+    this.setState({completedView: !currentView})
+  }
+
   render () {
     return (
       <div style={{width: '400px', margin: 'auto', marginTop: '50px'}}>
@@ -51,8 +57,13 @@ class App extends Component {
           <Button className='pull-right' style={{marginTop: '10px'}} bsStyle='primary'
             onClick={() => this.addTask(this.inputField.value)}>ADD</Button>
           <br />
-          <h4>Current Tasks</h4>
-          <Task tasks={this.state.tasks} onDelete={this.deleteTask} onCompleted={this.onCompleted} />
+          <button onClick={() => this.toggleView()}>Toggle View</button>
+          <h4>{this.state.completedView ? 'Completed Tasks' : 'Current Tasks'}</h4>
+          { this.state.completedView
+          ? <Task tasks={this.state.tasks.filter(task=>task.completed === true)} onDelete={this.deleteTask} onCompleted={this.onCompleted} />
+          : <Task tasks={this.state.tasks.filter(task=>task.completed === false)} onDelete={this.deleteTask} onCompleted={this.onCompleted} />
+          }
+
         </Panel>
       </div>
     )
