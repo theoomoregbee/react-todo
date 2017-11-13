@@ -9,7 +9,7 @@ function Item ({title, date, completed, onDelete, onCompleted}) {
         {date.toString()}
       </Col>
       <Col xs={3}>
-        <Button bsStyle='danger' bsSize='small' onClick={() => onDelete(date)}>Danger</Button>
+        <Button bsStyle='danger' bsSize='small' onClick={() => onDelete(date)}>Delete</Button>
       </Col>
     </Row>
   )
